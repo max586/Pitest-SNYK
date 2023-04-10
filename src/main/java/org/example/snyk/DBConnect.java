@@ -10,6 +10,7 @@ public class DBConnect {
         Statement stmt = conn.createStatement();
         String sql = "SELECT * FROM users WHERE username='" + username + "' AND password='" + password + "'";
         ResultSet rs = stmt.executeQuery(sql);
+        System.out.println("hello");
         return rs.next();
     }
 
