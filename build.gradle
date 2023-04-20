@@ -1,7 +1,7 @@
 plugins {
     id 'java'
     id 'info.solidsoft.pitest' version '1.9.0'
-    id("io.snyk.gradle.plugin.snykplugin") version "0.4"
+    id 'io.snyk.gradle.plugin.snykplugin' version '0.4'
 }
 
 group 'org.example'
@@ -13,15 +13,14 @@ repositories {
 
 dependencies {
     //vulnarable dependencies
-//    implementation 'org.springframework.data:spring-data-jpa:1.11.22.RELEASE'
-//    implementation 'com.h2database:h2:1.4.200'
-//    implementation 'com.fasterxml.jackson.core:jackson-databind:2.0.0'
+    implementation 'org.springframework.data:spring-data-jpa:1.11.22.RELEASE'
+    implementation 'com.h2database:h2:1.4.200'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.0.0'
 
     implementation 'junit:junit:4.13.2'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testImplementation 'org.junit.jupiter:junit-jupiter-params:5.9.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
-
 }
 
 test {
@@ -29,14 +28,14 @@ test {
 }
 
 pitest {
-    //reportDir  = <'C:/Users/makso/IdeaProjects/JWZP_Pitest_and_SNYK/PITReports'>
+    reportDir = file('PITReports')
     outputFormats = ['XML', 'HTML', 'CSV']
-    timestampedReports = false
+    timestampedReports = true
     junit5PluginVersion = '1.1.2'
     threads = 2
     targetTests = ['org.example.SimpleMutatorOperatorsCheckTest']
-    mutators = ['DEFAULTS','C' +
-            'ONSTRUCTOR_CALLS','REMOVE_CONDITIONALS']
+    mutators = ['CONDITIONALS_BOUNDARY', 'INCREMENTS','MATH',
+                'CONSTRUCTOR_CALLS', 'REMOVE_CONDITIONALS', 'NULL_RETURNS']
     historyInputLocation = '/mutationHistory.txt'
     historyOutputLocation = '/mutationHistory.txt'
 }
@@ -47,3 +46,5 @@ snyk {
     autoUpdate = true
     arguments = '--all-sub-projects'
 }
+
+//tasks.named("build") { finalizedBy("snyk-test") }

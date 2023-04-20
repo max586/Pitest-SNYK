@@ -2,8 +2,6 @@ package org.example;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-
 import static org.example.SimpleMutatorOperatorsCheck.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -12,12 +10,21 @@ class SimpleMutatorOperatorsCheckTest {
     void conditionalsBoundaryTest(){
         assertTrue(compareNumbers(0,1));
         assertFalse(compareNumbers(1,0));
-        //assertTrue(conditionalsBoundary(1,1));
     }
 
     @Test
-    void emptyReturnsTest() {
-        assertTrue(sortList(new ArrayList<Integer>()).isEmpty());
+    void incrementsTest(){
+        assertEquals(10, increaseByTen(0));
+    }
+
+    @Test
+    void mathTest(){
+        assertEquals(10, multiplyByTen(1));
+    }
+
+    @Test
+    void nullReturnsTest(){
+        assertEquals(1, new A(1).getA());
     }
 
     @Test

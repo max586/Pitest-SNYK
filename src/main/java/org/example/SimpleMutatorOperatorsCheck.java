@@ -7,7 +7,14 @@ public class SimpleMutatorOperatorsCheck {
     public static boolean compareNumbers(int a, int b){
         return a <= b;
     }
-    public static List<Integer> sortList(List<Integer> l){
+    public static int increaseByTen(int k){
+        for(int i=0;i<10;i++){k++;}
+        return k;
+    }
+    public static int multiplyByTen(int k){
+        return k*10;
+
+    }    public static List<Integer> sortList(List<Integer> l){
         l.sort(Integer::compareTo);
         return l;
     }
@@ -15,6 +22,10 @@ public class SimpleMutatorOperatorsCheck {
     static class A {
         int a;
         A(int a){this.a = a;}
+
+        public int getA() {
+            return a;
+        }
 
         @Override
         public boolean equals(Object o) {
